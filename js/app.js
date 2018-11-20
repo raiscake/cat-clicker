@@ -1,26 +1,44 @@
-// Instantiate Cat object
-var Cat = function(name, id, image, clicks = 0) {
-    name = this.name,
-    id = this.id,
-    image = this.image,
-    clicks = this.clicks
+// Add cats
+const xuxa = {
+    name: 'Xuxa',
+    id: 'cat1',
+    image: 'cat1.jpg',
+    count: 0
 };
 
-// Add cats
-var xuxa = new Cat('Xuxa', 'cat1', 'cat1.jpg');
-var halfie = new Cat('Halfie', 'cat2', 'cat2.jpg');
+const halfie = {
+    name: 'Halfie',
+    id: 'cat2',
+    image: 'cat2.jpg',
+    count: 0
+};
+
+// Put cats into an array
+const allCats = [xuxa, halfie];
 
 // Place cat divs
-var template = `
-    <div class="cat" id="${id}">
-        <img src="${image}" alt="" class="cat-image" id="${id}-image">
-        <p>Times clicked: <span id="${id}-click-total">0</span></p>
+function placeDiv(cat) {
+    const template = `
+    <div class="cat">
+        <img src="img/${cat.image}" alt="" class="cat-image" id="${cat.id}">
+        <p>Times clicked: <span id="${cat.id}-click-total">0</span></p>
     </div>`;
+
+    body = document.querySelector('body');
+    div = document.createElement('div');
+    div.innerHTML = template;
+    body.appendChild(div);
+}
+
+for(let cat of allCats) {
+    placeDiv(cat);
+    console.log(cat.id);
+}
 
 
 // Count clicks
-function countClicks() {
-    var clickCounter = document.querySelector('#click-total');
+function countClicks(cat) {
+    var clickCounter = document.getElementById(cat.id);
     count++;
     clickCounter.textContent = count;
 }
