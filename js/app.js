@@ -15,8 +15,32 @@ const halfie = {
     imgID: 'cat2-image'
 };
 
+const twins = {
+    name: 'Twins',
+    id: 'cat3',
+    image: 'cat3.jpg',
+    count: 0,
+    imgID: 'cat3-image'
+};
+
+const curious = {
+    name: 'Curious',
+    id: 'cat4',
+    image: 'cat4.jpg',
+    count: 0,
+    imgID: 'cat4-image'
+};
+
+const sleepy = {
+    name: 'Sleepy',
+    id: 'cat5',
+    image: 'cat5.jpg',
+    count: 0,
+    imgID: 'cat5-image'
+};
+
 // Put cats into an array
-const allCats = [xuxa, halfie];
+const allCats = [xuxa, halfie, twins, curious, sleepy];
 
 // Place cat divs
 function placeDiv(cat) {
@@ -47,7 +71,10 @@ function countClicks(cat) {
 }
 
 const xuxaDiv = document.getElementById(xuxa.imgID),
-    halfieDiv = document.getElementById(halfie.imgID);
+    halfieDiv = document.getElementById(halfie.imgID),
+    twinsDiv = document.getElementById(twins.imgID),
+    curiousDiv = document.getElementById(curious.imgID),
+    sleepyDiv = document.getElementById(sleepy.imgID);
 
 xuxaDiv.addEventListener('click', function() {
     countClicks(xuxa);
@@ -55,4 +82,16 @@ xuxaDiv.addEventListener('click', function() {
 
 halfieDiv.addEventListener('click', function() {
     countClicks(halfie);
+});
+
+twinsDiv.addEventListener('click', function() {
+    countClicks(twins);
+});
+
+curiousDiv.addEventListener('click', function() {
+    countClicks(curious);
+});
+
+sleepyDiv.addEventListener('click', function() {
+    countClicks(sleepy);
 });
