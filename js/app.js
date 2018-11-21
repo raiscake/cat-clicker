@@ -42,6 +42,21 @@ const sleepy = {
 // Put cats into an array
 const allCats = [xuxa, halfie, twins, curious, sleepy];
 
+// Build cat list
+
+
+function buildList() {
+    let catList = document.querySelector('.cat-list');
+    for (cat of allCats) {
+        let catListItem = document.createElement('li'),
+            template = `<a href="#" id="reveal-${cat.id}">${cat.name}</a>`;
+        catListItem.innerHTML = template;
+        catList.appendChild(catListItem);
+    }
+}
+
+buildList();
+
 // Place cat divs
 function placeDiv(cat) {
     const template = `
@@ -59,7 +74,7 @@ function placeDiv(cat) {
 
 for(let i = 0; i < allCats.length; i++) {
     let cat = allCats[i];
-    placeDiv(cat);
+//    placeDiv(cat);
 }
 
 // Count clicks
