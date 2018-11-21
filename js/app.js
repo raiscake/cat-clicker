@@ -46,17 +46,20 @@ const allCats = [xuxa, halfie, twins, curious, sleepy];
 function buildList() {
     let catList = document.querySelector('.cat-list');
     for (cat of allCats) {
+        // Add template
         let catListItem = document.createElement('li'),
             template = `<a href="#">${cat.name}</a>`;
         catListItem.setAttribute('id', `#reveal-${cat.id}`);
         catListItem.innerHTML = template;
         catList.appendChild(catListItem);
-        let catLinkID = catListItem.getAttribute('id'),
-            catLink = document.querySelector(catLinkID);
-        console.log(catLink);
+
+        // Reveal cat on click
+        //let catLinkID = catListItem.getAttribute('id'),
+        //    catLink = document.querySelector(catLinkID);
         catListItem.addEventListener('click', (function(catCopy) {
             return function() {
                 placeDiv(catCopy);
+                addListener(catCopy);
             };
         })(cat));
     }
@@ -69,23 +72,19 @@ window.addEventListener('load', function () {
 
 // Place cat divs
 function placeDiv(cat) {
+    // Add cat template
     const template = `
     <div class="cat" id="${cat.id}">
         <img src="img/${cat.image}" alt="" class="cat-image" id="${cat.id}-image">
         <p>Times clicked: <span id="${cat.id}-click-total">0</span></p>
     </div>`;
 
-    console.log('placed');
     body = document.querySelector('.cat-display');
     div = document.createElement('div');
     div.innerHTML = template;
     body.appendChild(div);
-}
 
 
-for(let i = 0; i < allCats.length; i++) {
-    let cat = allCats[i];
-//    placeDiv(cat);
 }
 
 // Count clicks
@@ -96,28 +95,12 @@ function countClicks(cat) {
     clickCounter.textContent = cat.count;
 }
 
-const xuxaDiv = document.getElementById(xuxa.imgID),
-    halfieDiv = document.getElementById(halfie.imgID),
-    twinsDiv = document.getElementById(twins.imgID),
-    curiousDiv = document.getElementById(curious.imgID),
-    sleepyDiv = document.getElementById(sleepy.imgID);
-
-xuxaDiv.addEventListener('click', function() {
-    countClicks(xuxa);
-})
-
-halfieDiv.addEventListener('click', function() {
-    countClicks(halfie);
-});
-
-twinsDiv.addEventListener('click', function() {
-    countClicks(twins);
-});
-
-curiousDiv.addEventListener('click', function() {
-    countClicks(curious);
-});
-
-sleepyDiv.addEventListener('click', function() {
-    countClicks(sleepy);
-});
+// Add click listener
+function addListener(cat) {
+    let catDiv = document.querySelector(`#${cat.imgID}`);
+    catDiv.addEventListener('click', (function(catCopy) {
+        return function() {
+             countClicks(catCopy);
+        }
+    })(cat));
+}
