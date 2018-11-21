@@ -80,6 +80,7 @@ function placeDiv(cat) {
     </div>`;
 
     body = document.querySelector('.cat-display');
+    body.innerHTML = '';
     div = document.createElement('div');
     div.innerHTML = template;
     body.appendChild(div);
