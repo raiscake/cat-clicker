@@ -43,19 +43,29 @@ const sleepy = {
 const allCats = [xuxa, halfie, twins, curious, sleepy];
 
 // Build cat list
-
-
 function buildList() {
     let catList = document.querySelector('.cat-list');
     for (cat of allCats) {
         let catListItem = document.createElement('li'),
-            template = `<a href="#" id="reveal-${cat.id}">${cat.name}</a>`;
+            template = `<a href="#">${cat.name}</a>`;
+        catListItem.setAttribute('id', `#reveal-${cat.id}`);
         catListItem.innerHTML = template;
         catList.appendChild(catListItem);
+        let catLinkID = catListItem.getAttribute('id'),
+            catLink = document.querySelector(catLinkID);
+        console.log(catLink);
+        catListItem.addEventListener('click', (function(catCopy) {
+            return function() {
+                placeDiv(catCopy);
+            };
+        })(cat));
     }
 }
 
-buildList();
+window.addEventListener('load', function () {
+    buildList();
+}, false);
+
 
 // Place cat divs
 function placeDiv(cat) {
@@ -65,7 +75,8 @@ function placeDiv(cat) {
         <p>Times clicked: <span id="${cat.id}-click-total">0</span></p>
     </div>`;
 
-    body = document.querySelector('body');
+    console.log('placed');
+    body = document.querySelector('.cat-display');
     div = document.createElement('div');
     div.innerHTML = template;
     body.appendChild(div);
