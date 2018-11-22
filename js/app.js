@@ -38,7 +38,8 @@ var data = {
             count: 0,
             imgID: 'cat5-image'
         }
-    ]
+    ],
+    shownCat: null
 };
 
 // -------- VIEW ------------ //
@@ -48,8 +49,8 @@ var catView = {
         let catList = document.querySelector('.cat-list');
         for (let i = 0; i < controller.getCats.length; i++) {
             // Add template
-            let cat = controller.getCats[i];
-            let catListItem = document.createElement('li'),
+            let cat = controller.getCats[i],
+                catListItem = document.createElement('li'),
                 template = `<a href="#">${cat.name}</a>`;
             catListItem.setAttribute('id', `#reveal-${cat.id}`);
             catListItem.innerHTML = template;
@@ -73,6 +74,7 @@ var catView = {
             <p>Times clicked: <span id="${cat.id}-click-total">${cat.count}</span></p>
         </div>`;
 
+        data.shownCat = cat;
         body = document.querySelector('.cat-display');
         body.innerHTML = '';
         div = document.createElement('div');
