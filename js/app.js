@@ -107,8 +107,14 @@ var adminView = {
                 <button>Cancel</button>
             </p>
         </div>`;
-        form.innerHTML = template;
-        display.appendChild(form);
+        form.setAttribute('id', 'admin-enabled');
+        if (document.querySelector('#admin-enabled') == null) {
+            form.innerHTML = template;
+            display.appendChild(form);
+        }
+        else {
+            return false;
+        }
     }
 }
 
