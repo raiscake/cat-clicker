@@ -91,18 +91,19 @@ var adminView = {
     showEdit: function() {
         let display = document.querySelector('.admin-display'),
             form = document.createElement('div'),
+            cat = data.shownCat,
             template = `<div class="admin-form">
             <label>
                 Name:
-                <input type="text">
+                <input type="text" value="${cat.name}">
             </label>
             <label>
                 URL:
-                <input type="url">
+                <input type="url"  value="${cat.image}">
             </label>
             <label>
                 Clicks:
-                <input type="number" min="0">
+                <input type="number" min="0"  value="${cat.count}">
             </label>
             <p>
                 <button>Save</button>
