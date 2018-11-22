@@ -76,7 +76,7 @@ function placeDiv(cat) {
     const template = `
     <div class="cat" id="${cat.id}">
         <img src="img/${cat.image}" alt="" class="cat-image" id="${cat.id}-image">
-        <p>Times clicked: <span id="${cat.id}-click-total">0</span></p>
+        <p>Times clicked: <span id="${cat.id}-click-total">${cat.count}</span></p>
     </div>`;
 
     body = document.querySelector('.cat-display');
