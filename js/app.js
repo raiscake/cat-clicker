@@ -81,6 +81,10 @@ var catView = {
     }
 };
 
+var adminView = {
+    
+}
+
 // -------- CONTROLLER ------------ //
 
 var controller = {
