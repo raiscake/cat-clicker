@@ -82,13 +82,43 @@ var catView = {
 };
 
 var adminView = {
-    
+    addListener: function(){
+        let button = document.querySelector('.admin-button');
+        button.addEventListener('click', adminView.showEdit);
+    },
+    showEdit: function() {
+        let display = document.querySelector('.admin-display'),
+            form = document.createElement('div'),
+            template = `<div class="admin-form">
+            <label>
+                Name:
+                <input type="text">
+            </label>
+            <label>
+                URL:
+                <input type="url">
+            </label>
+            <label>
+                Clicks:
+                <input type="number" min="0">
+            </label>
+            <p>
+                <button>Save</button>
+                <button>Cancel</button>
+            </p>
+        </div>`;
+        form.innerHTML = template;
+        display.appendChild(form);
+    }
 }
 
 // -------- CONTROLLER ------------ //
 
 var controller = {
     init: function() {
+        // Add listeners
+        adminView.addListener();
+
         // Initialize views
         catView.showCatList();
     },
