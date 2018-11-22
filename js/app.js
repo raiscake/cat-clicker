@@ -1,3 +1,5 @@
+// -------- DATA ------------ //
+
 var data = {
     // Put cats into an array
     allCats: [
@@ -9,7 +11,7 @@ var data = {
             imgID: 'cat1-image'
         },
         {
-            name: 'Halfie',
+            name: 'Bashful',
             id: 'cat2',
             image: 'cat2.jpg',
             count: 0,
@@ -39,8 +41,10 @@ var data = {
     ]
 };
 
-var view = {
-    buildList: function() {
+// -------- VIEW ------------ //
+
+var catView = {
+    showCatList: function() {
         let catList = document.querySelector('.cat-list');
         for (let i = 0; i < controller.getCats.length; i++) {
             // Add template
@@ -54,7 +58,7 @@ var view = {
             // Reveal cat on click
             catListItem.addEventListener('click', (function(catCopy) {
                 return function() {
-                    view.showCat(catCopy);
+                    catView.showCat(catCopy);
                     controller.addListener(catCopy);
                 };
             })(cat));
@@ -65,6 +69,7 @@ var view = {
         const template = `
         <div class="cat" id="${cat.id}">
             <img src="img/${cat.image}" alt="" class="cat-image" id="${cat.id}-image">
+            <h2>${cat.name}</h2>
             <p>Times clicked: <span id="${cat.id}-click-total">${cat.count}</span></p>
         </div>`;
 
@@ -76,9 +81,12 @@ var view = {
     }
 };
 
+// -------- CONTROLLER ------------ //
+
 var controller = {
     init: function() {
-        view.buildList();
+        // Initialize views
+        catView.showCatList();
     },
     getCats: data.allCats,
     countClicks: function(cat) {
