@@ -70,8 +70,8 @@ var catView = {
         const template = `
         <div class="cat" id="${cat.id}">
             <img src="img/${cat.image}" alt="" class="cat-image" id="${cat.id}-image">
-            <h2>${cat.name}</h2>
-            <p>Times clicked: <span id="${cat.id}-click-total">${cat.count}</span></p>
+            <h2 class="cat-name">${cat.name}</h2>
+            <p>Times clicked: <span id="${cat.id}-click-total" class="cat-count">${cat.count}</span></p>
         </div>`;
 
         data.shownCat = cat;
@@ -140,8 +140,13 @@ var adminView = {
         cat.count = newCount;
 
         // Update cat view
-        // alert('saved');
+        let viewName = document.querySelector('.cat-name'),
+            viewURL = document.querySelector('.cat-image'),
+            viewCount = document.querySelector('.cat-count');
 
+        viewName.textContent = newName;
+        viewURL.setAttribute('src', `img/${newURL}`);
+        viewCount.innerHTML = newCount;
     }
 }
 
