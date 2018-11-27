@@ -92,24 +92,27 @@ var adminView = {
         let display = document.querySelector('.admin-display'),
             form = document.createElement('div'),
             cat = data.shownCat,
+            saveButton = document.querySelector('.admin-save'),
             template = `<div class="admin-form">
             <label>
                 Name:
-                <input type="text" value="${cat.name}">
+                <input type="text" class="admin-name" value="${cat.name}">
             </label>
             <label>
                 URL:
-                <input type="url"  value="${cat.image}">
+                <input type="url" class="admin-url" value="${cat.image}">
             </label>
             <label>
                 Clicks:
-                <input type="number" min="0"  value="${cat.count}">
+                <input type="number" class="admin-count" min="0"  value="${cat.count}">
             </label>
             <p>
-                <button>Save</button>
-                <button>Cancel</button>
+                <button class="admin-save" onclick="adminView.saveEdit()">Save</button>
+                <button class="admin-cancel">Cancel</button>
             </p>
         </div>`;
+
+        // Show form
         form.setAttribute('id', 'admin-enabled');
         if (document.querySelector('#admin-enabled') == null) {
             form.innerHTML = template;
@@ -118,6 +121,27 @@ var adminView = {
         else {
             return false;
         }
+
+        // Add listeners
+        console.log(cat);
+        console.log(saveButton);
+        adminView.addSaveListener;
+
+    },
+    saveEdit: function() {
+        let newName = document.querySelector('.admin-name').value,
+            newURL = document.querySelector('.admin-url').value,
+            newCount = document.querySelector('.admin-count').value,
+            cat = data.shownCat;
+
+        // Update cat properties
+        cat.name = newName;
+        cat.image = newURL;
+        cat.count = newCount;
+
+        // Update cat view
+        // alert('saved');
+
     }
 }
 
