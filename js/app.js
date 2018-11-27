@@ -92,7 +92,6 @@ var adminView = {
         let display = document.querySelector('.admin-display'),
             form = document.createElement('div'),
             cat = data.shownCat,
-            saveButton = document.querySelector('.admin-save'),
             template = `<div class="admin-form">
             <label>
                 Name:
@@ -108,7 +107,7 @@ var adminView = {
             </label>
             <p>
                 <button class="admin-save" onclick="adminView.saveEdit()">Save</button>
-                <button class="admin-cancel">Cancel</button>
+                <button class="admin-cancel" onclick="adminView.cancelEdit()">Cancel</button>
             </p>
         </div>`;
 
@@ -122,14 +121,10 @@ var adminView = {
             return false;
         }
 
-        // Add listeners
-        console.log(cat);
-        console.log(saveButton);
-        adminView.addSaveListener;
-
     },
     saveEdit: function() {
-        let newName = document.querySelector('.admin-name').value,
+        let display = document.querySelector('.admin-display'),
+            newName = document.querySelector('.admin-name').value,
             newURL = document.querySelector('.admin-url').value,
             newCount = document.querySelector('.admin-count').value,
             cat = data.shownCat;
@@ -147,6 +142,13 @@ var adminView = {
         viewName.textContent = newName;
         viewURL.setAttribute('src', `img/${newURL}`);
         viewCount.innerHTML = newCount;
+
+        // Hide admin
+        display.innerHTML = '';
+    },
+    cancelEdit: function() {
+        let display = document.querySelector('.admin-display');
+        display.innerHTML = '';
     }
 }
 
